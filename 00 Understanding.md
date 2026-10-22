@@ -53,7 +53,6 @@ Categories of LLD
     - Mediator
     - Memnto
 
-
 System design is the skill of choosing right components and putting them right  place to solve the specific software problem.
 
 As a senior Engineer you need to design the whole System
@@ -146,11 +145,9 @@ So loadbalancer sends 10 request to each servers so the load is even.
 
 **Application Server:** An application server (or app server) is a software framework that exposes business logic to client programs through various protocols, primarily running server-side code to generate dynamic content.It has Deep integration with databases to query, write, and update data.
 
-
-
 **Protocol:** A protocol is a standardized set of rules that defines how data is formatted, transmitted, received, and understood between different devices on a network
 
-
+**Gateway:** Single entry point or front door 
 
 **API Gateway**
     - Request Routing
@@ -161,11 +158,17 @@ So loadbalancer sends 10 request to each servers so the load is even.
     - Load Balancing
     - Monitoring
     - Logging
-    - Transformation
+    - API versioning
+    - Request/response transformation
     - Service Discovery
     - Circuit Breaker
 
-
+**API Gateway** deos below the ones before the request reaches the backend.
+    - Verify JWT token
+    - Check user permissions
+    - Apply rate limits
+    - Log requests
+    - Route to correct service
 
 Caching
  - Client cache
@@ -224,3 +227,76 @@ In a Monolithic application, everything is built inside one big codebase running
 
 **Pub/Sub** Architecture
 
+
+**NGINX** :NGINX (pronounced "Engine-X") is a high-performance web server that is commonly used for 
+    - Web Server
+    - Reverse Proxy
+    - Load Balancer
+    - API Gateway
+    - SSL/TLS Termination Server
+
+**SSL/TLS:**   **SSL (Secure Sockets Layer)** and **TLS (Transport Layer Security)** are protocols used to **encrypt data** transmitted between a client (browser, mobile app) and a server.
+
+**TLS** is the modern replacement for **SSL** and is used by HTTPS to protect data such as passwords, API requests, and personal information from eavesdropping and tampering during transmission.
+
+**SSL/TLS Termination:**
+SSL/TLS termination happens at the point where encrypted HTTPS traffic is decrypted and converted into plain HTTP (or another protocol) so the application can process it.
+
+**Websocket?**
+WebSocket is a communication protocol that provides a persistent, two-way (full-duplex) connection between a client and a server.
+
+Unlike traditional HTTP, where the client sends a request and waits for a response, WebSocket allows both client and server to send messages anytime after the connection is established.
+
+REST API :
+    - Communication : Request/Response
+    - Best For : CRUD operations
+
+WebSocket :
+    -Communication :  Two-way
+    - Best For : Live data streaming
+
+**Capacity Planning**:
+    - It is the process of determining how much infrastructure, compute power, storage, memory, network bandwidth, and application resources are needed to handle current and future workloads without performance issues.
+
+Capacity Planning answers the question: **"How many users, requests, servers, databases, and resources do I need to support my application?"**
+
+
+**HTTP Methods** :
+    - HTTP (HyperText Transfer Protocol) is used for communication between clients and servers. 
+    - Methods
+        - GET: Retrieves data from the server.
+        - POST: Creates or submits new data.
+        - PUT: Updates or replaces existing data.
+        - PATCH: Partially updates existing data.
+        - DELETE: Removes data.
+
+**Rate Limiting** :
+
+
+**Paging:**
+
+**Proxy** 
+    - A **proxy** is an intermediary that sits between a client and a server and forwards requests on behalf of the client.
+    - Benefits
+        - Content filtering
+        - Monitoring
+        - Security
+        - Hides client IP addresses
+    - **API Gateway** is a specialized type of reverse proxy
+
+
+**Entra ID**:
+    - **Microsoft Entra ID** (formerly **Azure Active Directory / Azure AD**) is Microsoft's cloud-based **Identity and Access Management (IAM)** service. It helps organizations manage **users, applications, authentication, and authorization**.
+
+**Single Sign-On (SSO)** :
+    - One login gives access to multiple applications.
+    - with Entra ID you can access Teams; Outlook;Azure
+    - User signs in once and accesses all authorized applications.
+
+**Multi-Factor Authentication (MFA)** 
+    - Provides an extra layer of security.
+    - Password + OTP / Authenticator Approval
+
+
+**Redundancy**:
+    - **Redundancy** means having an extra or backup component available so that if one   component fails, another can continue providing the service.
