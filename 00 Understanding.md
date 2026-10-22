@@ -94,44 +94,44 @@ Questions to ask ?
 
  Should the application be 'Monolith' or 'Microservice'
 
- Monolith
+ **Monolith**
     - One codebase
     - One deployment
     - one running thing
 
-Microservice
+**Microservice**
     - Split into many programs
     - Seperate services with seperate code base and deployed  its own and runs on its won server.
     - They must talk over the network
 
-Why Monilith application split into Microsoerves
+Why **Monilith** application split into **Microservices**
     - Independent Scaling
     - Team size and each team can work on own service and ship on items own schedule
     - Microservice has to make network call to talk to other services, every network call can slow, time out or fail.
 
     
-Veritical Scaling
+**Veritical Scaling**
     - More CPU
     - More RAM
     - Faster DISK
 
-Horizontal Scaling
+**Horizontal Scaling**
     - Many Small servers
     - Each running copy of your application
     - Load balancing spreads traffic across all the machine above
 
-DNS: Doamin Name System
+**DNS:** Doamin Name System
 
 Speed
-  - Latency : Time for one round trip
-  - Bandwidth : How much fits through at once
+  - **Latency** : Time for one round trip
+  - **Bandwidth** : How much fits through at once
 
 Loadbalancer is server which runs an application and this application entire job is to take each incoming request and forward the request to one of the server, so speading the load across servers.
 
 Lets sat we have 10 servers and 100 reqeusts
 So loadbalancer sends 10 request to each servers so the load is even.
 
-Reverse Proxy:
+**Reverse Proxy:**
  - 
 
 
