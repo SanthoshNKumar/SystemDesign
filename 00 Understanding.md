@@ -122,6 +122,9 @@ Why **Monilith** application split into **Microservices**
 
 **DNS:** Doamin Name System
 
+**CDN:** Content Delivery Network
+
+
 Speed
   - **Latency** : Time for one round trip
   - **Bandwidth** : How much fits through at once
@@ -135,13 +138,89 @@ So loadbalancer sends 10 request to each servers so the load is even.
  - 
 
 
+**Client Request:**A user's browser sends a request to a website or API.
+
+
+**Web server:** A web server is software (and often the underlying hardware) designed to accept incoming network requests via HTTP or HTTPS and return responses—most commonly web pages, images, and API data.
+
+
+**Application Server:** An application server (or app server) is a software framework that exposes business logic to client programs through various protocols, primarily running server-side code to generate dynamic content.It has Deep integration with databases to query, write, and update data.
 
 
 
+**Protocol:** A protocol is a standardized set of rules that defines how data is formatted, transmitted, received, and understood between different devices on a network
 
 
 
+**API Gateway**
+    - Request Routing
+    - Authentication and Authorization
+    - Rate Limiting and Throttling
+    - Caching
+    - Request and Response Transformation
+    - Load Balancing
+    - Monitoring
+    - Logging
+    - Transformation
+    - Service Discovery
+    - Circuit Breaker
 
 
 
+Caching
+ - Client cache
+ - DNS Cache
+ - CDN Cache
+ - Web Server Cache
+ - App Server Cache
+ - Database Cache
+
+ ***Data Partitioning** : 
+    - Horizontal partitioning (Sharding): Dividing the rows of a table into smaller tables and storing them on different server or databases instances.  
+    - Vartical partitioning : Involves dividing the columns of a table into separate tables.
+
+**Database Repliaction** :
+    - Technique to maintain multiple copy of same databases across different servers or locations.
+    - Focus
+        - Data Availability
+        - Redundancy
+        - Fault Tolerance
+
+**Distributed Messaging Systems** :
+
+
+**Stateless and Stateful Systems**
+- **Stateless** systems process each request independently without storing client session information on the server.
+- **Stateful** systems maintain information about previous interactions and use it while processing subsequent requests.
+
+**Token**: 
+A token is a secure, lightweight digital ticket that represents a user's identity or permissions so they don't have to re-enter their password on every request.
+
+Usecase for **Token**
+• When a user types their username and password and clicks "Login," those credentials travel to your dedicated Auth Server. The Auth Server checks the database to verify the password is correct. If it is, the Auth Server generates, signs, and issues the token, sending it back to the user's browser.
+
+When will **Token** delete?
+However, if you clear your Cookies and Cache/Site Data, the tokens will be completely deleted, and you will be immediately logged out of all your apps and websites.
+
+Why **Token**?
+In a Microservices architecture, your app is broken down into dozens of tiny, independent services (e.g., Auth Service, Payment Service, Inventory Service) running on completely different servers.
+
+In a Monolithic application, everything is built inside one big codebase running on a single server with a single database and  'Sessions' work perfectly:
+
+**Sessions** are built for Monoliths, and **Tokens** are built for Microservices.
+
+**JWTs** :JSON Web Tokens
+- JWT is the container that holds the authentication information, and that container is the token itself
+
+- A raw JWT is represented as a single, long string split into three distinct components separated by dots (.): Header.Payload.Signature
+-  How JSON turns into a JWT
+    - You write regular JSON:
+    - The server encodes it (Base64URL encoding)
+    - The server signs it: 
+
+**OAuth**
+
+**MFA (Multi Factor Authentication):**
+
+**Pub/Sub** Architecture
 
