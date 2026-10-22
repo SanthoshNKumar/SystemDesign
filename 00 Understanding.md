@@ -133,15 +133,31 @@ Loadbalancer is server which runs an application and this application entire job
 Lets sat we have 10 servers and 100 reqeusts
 So loadbalancer sends 10 request to each servers so the load is even.
 
+Load Balancer:
+    - Distributes traffic across multiple web servers
+    - Improves availability
+    - Prevents a single server from becoming overloaded
+
+
+
+
 **Reverse Proxy:**
  - 
 
 
 **Client Request:**A user's browser sends a request to a website or API.
 
+***************************************************************************
 
 **Web server:** A web server is software (and often the underlying hardware) designed to accept incoming network requests via HTTP or HTTPS and return responses—most commonly web pages, images, and API data.
 
+Web Server
+    - Receives HTTP requests
+    - Routes requests to Read API or Write API
+        - GET /abc123 Goes to Read API
+        - POST /create Goes to Write API
+
+***************************************************************************
 
 **Application Server:** An application server (or app server) is a software framework that exposes business logic to client programs through various protocols, primarily running server-side code to generate dynamic content.It has Deep integration with databases to query, write, and update data.
 
@@ -191,10 +207,56 @@ Caching
 
 **Distributed Messaging Systems** :
 
-
+******************************************************************
 **Stateless and Stateful Systems**
-- **Stateless** systems process each request independently without storing client session information on the server.
-- **Stateful** systems maintain information about previous interactions and use it while processing subsequent requests.
+    - **Stateful** = Remembers previous interactions.
+    - **Stateless** = Treats every request as completely new.
+
+    Example:
+    **Stateful**
+        A hotel receptionist remembers you.
+
+        Day 1:
+        You: My room number is 101
+
+        Day 2:
+        Receptionist: Welcome back, Mr. Santhosh!
+
+        The receptionist stores information about you.
+        ✅ Remembers history
+
+    **Stateless**
+    A token machine at a government office.
+
+    Visit 1 -> Take Token
+    Visit 2 -> Take New Token
+    Visit 3 -> Take New Token
+
+    No memory of previous visits.
+    ✅ Each interaction is independent
+
+### Stateful Systems
+
+-   Database connections
+-   WebSocket connections
+-   Online multiplayer games
+-   Shopping carts stored in server memory
+-   Video conferencing sessions
+-   Redis Pub/Sub subscribers
+-   FTP sessions
+
+### Stateless Systems
+
+-   REST APIs
+-   HTTP requests
+-   Microservices with JWT authentication
+-   Azure Functions
+-   Serverless applications
+-   API Gateway requests
+-   Azure OpenAI API calls
+
+******************************************************************
+
 
 **Token**: 
 A token is a secure, lightweight digital ticket that represents a user's identity or permissions so they don't have to re-enter their password on every request.
@@ -221,7 +283,22 @@ In a Monolithic application, everything is built inside one big codebase running
     - The server encodes it (Base64URL encoding)
     - The server signs it: 
 
-**OAuth**
+**********************************************************************************
+
+**OAuth**: Open Authorization:
+    - Its is a standard protocol that allows an application to access resources on behalf of a user without sharing the user's password.
+
+    - Example:
+        Instead of giving housekeeping your house key, you give them a temporary access card that only works for your room and only during certain hours.
+
+        Password = House Key 🔑
+        OAuth Token = Temporary Access Card 🎫
+
+        OAuth uses access tokens instead of passwords.
+
+        API key = Company Access Card
+
+**********************************************************************************
 
 **MFA (Multi Factor Authentication):**
 
@@ -272,6 +349,48 @@ Capacity Planning answers the question: **"How many users, requests, servers, da
 
 **Rate Limiting** :
 
+****************************************************************
+
+**Throttling**:
+    - **Throttling** is a technique used to **limit the rate of requests** that a user, application, or service can send to a system.
+
+    - > **Throttling = Slowing down or restricting requests to protect a system from overload.**
+
+Without throttling:
+
+User
+  |
+10000 Requests/Second
+  |
+Server
+
+Result:
+
+❌ High CPU Usage
+❌ Memory Exhaustion
+❌ System Crash
+
+
+With throttling:
+
+User
+|
+10000 Requests/Second
+|
+Throttle Limit: 100 Requests/Second
+|
+Server
+
+Result :
+
+✅ Stable Performance
+✅ Fair Usage
+✅ Resource Protection
+
+****************************************************************
+
+
+
 
 **Paging:**
 
@@ -300,3 +419,38 @@ Capacity Planning answers the question: **"How many users, requests, servers, da
 
 **Redundancy**:
     - **Redundancy** means having an extra or backup component available so that if one   component fails, another can continue providing the service.
+
+
+What is Request 
+
+What is Response
+
+Aggregare Response
+
+Rate-limiting policies
+
+What is Route
+
+
+***************************************************************************
+**Database Scaling Techniques**
+
+**Sharding** – Splitting data across multiple servers.
+
+**Replication** – Creating copies of data for redundancy
+
+**Indexing** – Optimizing search queries for faster access.
+
+***************************************************************************
+
+
+***************************************************************************
+
+***************************************************************************
+
+
+***************************************************************************
+
+***************************************************************************
+
+***************************************************************************
