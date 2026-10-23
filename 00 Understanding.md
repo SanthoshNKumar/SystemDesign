@@ -120,6 +120,17 @@ Why **Monilith** application split into **Microservices**
     - Load balancing spreads traffic across all the machine above
 
 **DNS:** Doamin Name System
+    - DNS converts a domain name into an IP address.  
+    - Example
+        
+        ```python
+        www.contoso.com
+            |
+        DNS Lookup
+            |
+        20.100.50.10
+        ```
+
 
 **CDN:** Content Delivery Network
 
