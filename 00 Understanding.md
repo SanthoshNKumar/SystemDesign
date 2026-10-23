@@ -123,13 +123,12 @@ Why **Monilith** application split into **Microservices**
     - DNS converts a domain name into an IP address.  
     - Example
         
-        ```python
         www.contoso.com
             |
         DNS Lookup
             |
         20.100.50.10
-        ```
+        
 
 
 **CDN:** Content Delivery Network
