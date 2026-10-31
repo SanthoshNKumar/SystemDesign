@@ -1,5 +1,12 @@
 
 
+What is System Desing?
+
+
+
+
+
+
 **HLD (High level Design)**
  - It is an architectuire of complete system, how different components in the sytem are interacting each other.
 
@@ -91,12 +98,77 @@ Questions to ask ?
 
  A cache - because reads dominates
 
+**********************************************************
+
+What are servers?
+    - A server is actually a computer, but it is designed and configured to serve many users or applications continuously.
+    - Purpose:
+        Provides services to many users
+
+    Examples:
+        - Hosts websites
+        - Runs APIs
+        - Stores databases
+        - Runs AI applications
+
  Should the application be 'Monolith' or 'Microservice'
+
+**********************************************************
+
+**Backend Service:**
+    - A Backend Service is the part of an application that runs on the server and handles the business logic, data processing, authentication, and communication with databases or other services.
+    - The Backend Service:
+         - Receives the user's question.
+         - Checks Redis cache.
+         - Retrieves documents from Azure AI Search.
+         - Calls Azure OpenAI.
+         - Returns the final answer.
+
+    - A microservice is a small, independent backend application that performs one specific business function.
+
+    Frameworks
+        - Python
+            - Flask
+            - Fast API
+            - Django
+        - C#/.Net
+            - ASP.NET Core
+        - Java
+            - Spring Boot
+        - JavaScript / TypeScript
+            - Express.js
+            - NestJS
+        - Go (Golang)
+            - Gin
+        
+    - Why need of Backend Framework?
+        - A backend framework helps developers build backend services faster, more securely, and with less code.
+        - Without a framework, you would have to build everything from scratch:
+            - Handle HTTP requests
+            - Create API routes
+            - Manage authentication
+            - Connect to databases
+            - Handle errors
+            - Manage security
+
+    - RAG Backend Service
+        - Retrieves documents
+        - Builds prompts
+        - Calls Azure OpenAI
+        - Returns answers
+
+    - A Web Server manages and routes web traffic, while a Backend Service executes the application's business logic and processes data.
+
+    - Backend services can be deployed on AKS. Typically, each backend service (such as a Flask, FastAPI, ASP.NET Core, or Spring Boot application) is containerized using Docker and deployed as Kubernetes Pods in an AKS cluster.
+
 
  **Monolith**
     - One codebase
     - One deployment
     - one running thing
+
+Monoliths are simpler to develop but harder to scale, whereas microservices are complex but offer better flexibility and scalability.
+
 
 **Microservice**
     - Split into many programs
@@ -162,17 +234,42 @@ Load Balancer:
 **Web server:** A web server is software (and often the underlying hardware) designed to accept incoming network requests via HTTP or HTTPS and return responses—most commonly web pages, images, and API data.
 
 Web Server
-    - Receives HTTP requests
+    - Receives HTTP/HTTPS requests
+    - Serve static files
+        - Images
+        - CSS
+        - Javascript
+        - HTML
+    - Forward requests to application servers
     - Routes requests to Read API or Write API
         - GET /abc123 Goes to Read API
         - POST /create Goes to Write API
 
+**Web Server**
+    - NGINX
+    - Apache
+    - IIS
+
+
 ***************************************************************************
 
-**Application Server:** An application server (or app server) is a software framework that exposes business logic to client programs through various protocols, primarily running server-side code to generate dynamic content.It has Deep integration with databases to query, write, and update data.
+**Application Server:** An application server (or app server) is a software framework that exposes business logic to client programs through various protocols, primarily running server-side code to generate dynamic content.It has Deep integration with databases to 
+query, write, and update data.
+
+**Application Server** Responsible for
+    - User authentication
+    - Business rules
+    - Calling databases
+    - Calling external APIs
+    - Processing requests
+
+***************************************************************************
+
 
 **Protocol:** A protocol is a standardized set of rules that defines how data is formatted, transmitted, received, and understood between different devices on a network
 
+
+***************************************************************************
 **Gateway:** Single entry point or front door 
 
 **API Gateway**
@@ -195,6 +292,21 @@ Web Server
     - Apply rate limits
     - Log requests
     - Route to correct service
+    - Detects unhealthy servers
+    - Prevents overloading a single server
+
+**API Gateway**
+    - Azure Load Balancer
+    - Azure Application Gateway
+    - NGINX
+    - HAProxy
+
+
+***************************************************************************
+
+**Caching**:
+    - 
+
 
 Caching
  - Client cache
@@ -203,6 +315,10 @@ Caching
  - Web Server Cache
  - App Server Cache
  - Database Cache
+
+ Caching Tools:
+    - Radis
+    - DynamoDB
 
  ***Data Partitioning** : 
     - Horizontal partitioning (Sharding): Dividing the rows of a table into smaller tables and storing them on different server or databases instances.  
@@ -357,6 +473,9 @@ Capacity Planning answers the question: **"How many users, requests, servers, da
         - PATCH: Partially updates existing data.
         - DELETE: Removes data.
 
+**HTTPs** : 
+    - HTTPS (Hypertext Transfer Protocol Secure) extends HTTP with SSL/TLS encryption, securing commuication between browser and server.
+
 **Rate Limiting** :
 
 ****************************************************************
@@ -453,13 +572,113 @@ What is Route
 
 ***************************************************************************
 
+**Asynchronous Processing**
+    - "Start the work now, finish it later."
+    - A task is started, but the user does **not wait** for it to finish. The task is processed in the background while the application continues with other work.
+
+**Message Queue** enables asynchronous processing.
+
+**Message Queue**
+    - Azure Service Bus
+    - RabbitMQ
+    - Kafka
+    - AWS SQS
+
+
+**Example**:
+
+RAG Application
+
+Suppose a user uploads 1,000 documents.
 
 ***************************************************************************
 
+
+
+**Latency and throughput** — how fast is a single request, and how many requests can the system handle per second?
+
 ***************************************************************************
+
+## Software Architectural Patterns
+
+**Layered Architecture** - 
+
+**Client-Server Architecture**- A traditional model where the client (user interface) communicates with a centralised server to request services or resources. 
+
+**Microservices Architecture**
+An advanced distributed approach where applications are broken down into small, independently deployable services that communicate over APIs. 
+
+ **Event-Driven Architecture**
+Components communicate through asynchronous events — producers emit events and consumers react to them. This model promotes loose coupling and scalability. 
+
+***************************************************************************
+
+1. Read-Heavy System
+    - Use caching to make the reads faster.
+
+2. High-Write Traffic
+    - Use async workers to process the writes
+    - Use databases powered by LSM-Trees
+
+3. Single Point of Failure
+    - Implement redundancy and failover mechanisms for critical components like databases.
+
+4.  High Availability
+    - Use load balancing to ensure that requests go to healthy server instances.
+    - Use database replication to improve durability and availability.
+
+5. High Latency
+    - Use a content delivery network to reduce latency.
+
+6. Handling Large Files
+    - Use block storage and object storage to handle large files and complex data.
+
+7. Monitoring and Alerting
+    - Use a centralized logging system using something like the ELK stack.
+
+8. Slower Database Queries
+    - Use proper indexes to optimize queries
+    - Use sharding to scale the database horizontally.
 
 
 ***************************************************************************
+
+**Traffic Control:**
+    - Traffic control mechanisms regulate how traffic flows in a distributed system to optimize performance and reliability.
+
+Traffic Control Techniques
+    - Load Balancing – Distributes incoming traffic across multiple servers.
+    - Circuit Breaker – Stops requests to failing services.
+    - Rate-Based Throttling – Slows down requests instead of blocking them.
+    - Queue-based processing – Uses message queues to handle high-load spikes.
+    - Priority-Based Routing – Assigns priority levels to requests.
+
+***************************************************************************
+
+**Concurrency:** Multiple components run simultaneously.
+**Single Responsibility:** Each service focuses on a specific business capability.
+**Decentralization:** Services are independently deployable and scalable.
+**Fault Isolation:** Failures in one service don’t affect others.
+**Vertical Scaling:** Adding more resources (CPU, RAM) to a single node.
+**Horizontal Scaling:** Adding more nodes(Server) to the system
+**Sharding:** Partition data across multiple databases.
+**Caching:** Reduce database load by caching frequently accessed data (e.g., Redis, Memcached)
+**WebSockets** provide real-time, bidirectional communication, useful for chat applications and live updates.
+
+***************************************************************************
+
+Architecture
+    - Overall system blueprint
+    - Example : RAG + Redis + AI Search + OpenAI
+
+Component
+    - Major building block
+    - RAG API Service
+
+Module
+    - Smaller functional unit inside a component
+    - Authentication Module, Chat Module
+
 
 ***************************************************************************
 
